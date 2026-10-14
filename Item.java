@@ -1,0 +1,42 @@
+package game.inventory;
+
+public class Item {
+    // storing item information
+    private String name;
+    private String genre;
+    private int stockCount;
+    private String serialCode;
+    // constructor for item object
+    public Item(String name, String genre, int stockCount, String serialCode){
+        this.name = name;
+        this.genre = genre;
+        this.stockCount = stockCount;
+        this.serialCode = serialCode;
+    }
+    // getter methods
+    public String getName() {
+        return name;
+    }
+    public String getGenre() {
+        return genre;
+    }
+    public int getStockCount() {
+        return stockCount;
+    }
+    String getSerialCode() {
+        return serialCode;
+    }
+    // checking if enough stock exists
+    private boolean isAvailable(int quantity){
+        return stockCount >= quantity;
+    }
+    // selling items if stock is available
+    public void sell(int quantity) {
+        if (isAvailable(quantity)){
+            stockCount -= quantity;
+            System.out.println("Sold " + quantity + "copy/copies of " + name + ". Remaining stock: " + stockCount);
+        } else {
+            System.out.println("WARNING: Not enough stock for " + name + ". Requested: " + quantity + ", Available: " + stockCount);
+        }
+    }
+}
